@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react'
 
 // Custom hook: tách logic ra khỏi UI
-// Bất kỳ component nào cũng có thể dùng hook này
+
 export function useTodos() {
     const [todos, setTodos] = useState(() => {
-        // Lazy initializer: chỉ chạy 1 lần khi component mount
-        // Đọc data từ localStorage nếu có, không thì trả về []
+        
         const saved = localStorage.getItem('focusroom-todos')
         return saved ? JSON.parse(saved) : []
     })
 
-    // Mỗi khi todos thay đổi → lưu vào localStorage
     useEffect(() => {
         localStorage.setItem('focusroom-todos', JSON.stringify(todos))
     }, [todos])
@@ -18,16 +16,16 @@ export function useTodos() {
     // --- Các hàm thao tác ---
 
     function addTodo(text) {
-        if (!text.trim()) return           // bỏ qua nếu input rỗng
+        if (!text.trim()) return           
         setTodos(prev => [
             {
-                id: Date.now(),                // dùng timestamp làm ID tạm
+                id: Date.now(),                
                 text: text.trim(),
                 completed: false,
                 priority: 'medium',
                 createdAt: new Date().toISOString(),
             },
-            ...prev,                         // todo mới lên đầu danh sách
+            ...prev,                         
         ])
     }
 
@@ -35,7 +33,7 @@ export function useTodos() {
         setTodos(prev =>
             prev.map(todo =>
                 todo.id === id
-                    ? { ...todo, completed: !todo.completed }  // spread: copy object rồi đổi 1 field
+                    ? { ...todo, completed: !todo.completed }
                     : todo
             )
         )
@@ -53,6 +51,6 @@ export function useTodos() {
         )
     }
 
-    // Hook trả về data + các hàm — component dùng destructuring để lấy
+    // Hook trả về data + các hàm
     return { todos, addTodo, toggleTodo, deleteTodo, setPriority }
 }
