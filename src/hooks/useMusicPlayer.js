@@ -14,10 +14,7 @@ function getYouTubeId(url) {
 }
 
 export const PRESETS = [
-    { label: 'Lo-fi Hip Hop', url: 'https://www.youtube.com/live/EWrX250Zhko?si=IIIUr7Mg9q_c6c6s' },
-    { label: 'Jazz & Bossa Nova', url: 'https://www.youtube.com/watch?v=Dx5qFachd3A' },
-    { label: 'Deep Focus', url: 'https://www.youtube.com/watch?v=5qap5aO4i9A' },
-    { label: 'Piano Study', url: 'https://www.youtube.com/watch?v=lTRiuFIWV54' },
+    { label: 'Piano Study', url: 'https://www.youtube.com/watch?v=cYPJaHT5f3E' },
 ]
 
 export { getYouTubeId }

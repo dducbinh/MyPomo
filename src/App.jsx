@@ -23,7 +23,6 @@ export default function App() {
 	const [openPanel, setOpenPanel] = useState(null)
 	const [activePage, setActivePage] = useState(null)
 
-	// Audio state sống ở App — không mất khi đóng popup
 	const audioManager = useAudioManager()
 	const musicPlayer = useMusicPlayer()
 
@@ -41,45 +40,31 @@ export default function App() {
 			/>
 			<div className="absolute inset-0 bg-black/30" />
 
-			{/* YouTube iframe ẩn — chạy background khi popup đóng */}
-			{musicPlayer.videoId && (
-				<iframe
-					key={musicPlayer.videoId}
-					src={`https://www.youtube.com/embed/${musicPlayer.videoId}?autoplay=1&rel=0`}
-					allow="autoplay; encrypted-media"
-					className="absolute -top-full -left-full w-1 h-1 opacity-0 pointer-events-none"
-					title="bg-music"
-				/>
-			)}
-
 			{/* Content */}
 			<div className="relative z-10 min-h-screen flex flex-col">
 				<TopBar />
-
 				<main className="flex-1 flex items-center justify-center px-4">
 					<PomodoroTimer />
 				</main>
-
-				{/* Dock trái */}
 				<LeftDock openPanel={openPanel} onTogglePanel={togglePanel} />
-
-				{/* Dock phải */}
 				<RightDock activePage={activePage} onNavigate={setActivePage} />
 			</div>
 
-			{/* Popups góc trái */}
+			{/* Popups */}
 			{openPanel === 'noise' && (
 				<WhiteNoisePanel
 					audioManager={audioManager}
 					onClose={() => setOpenPanel(null)}
 				/>
 			)}
-			{openPanel === 'music' && (
-				<MusicPanel
-					musicPlayer={musicPlayer}
-					onClose={() => setOpenPanel(null)}
-				/>
-			)}
+
+			
+			<MusicPanel
+				musicPlayer={musicPlayer}
+				isOpen={openPanel === 'music'}
+				onClose={() => setOpenPanel(null)}
+			/>
+
 			{openPanel === 'bg' && (
 				<BackgroundPanel
 					current={bgUrl}
