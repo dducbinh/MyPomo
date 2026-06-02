@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PomodoroTimer from './components/PomodoroTimer'
 import LeftDock from './components/LeftDock'
 import RightDock from './components/RightDock'
@@ -8,6 +8,7 @@ import MusicPanel from './components/MusicPanel'
 import BackgroundPanel from './components/BackgroundPanel'
 import { useAudioManager } from './hooks/useAudioManager'
 import { useMusicPlayer } from './hooks/useMusicPlayer'
+import { useAuthStore } from './store/useAuthStore'
 
 export const BACKGROUNDS = [
 	{ id: 'mountains', label: 'Mountains', url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80' },
@@ -19,6 +20,12 @@ export const BACKGROUNDS = [
 ]
 
 export default function App() {
+
+	const { fetchUser } = useAuthStore()
+	useEffect(() => {
+		fetchUser()
+	}, [])
+
 	const [bgUrl, setBgUrl] = useState(BACKGROUNDS[0].url)
 	const [openPanel, setOpenPanel] = useState(null)
 	const [activePage, setActivePage] = useState(null)
@@ -58,7 +65,7 @@ export default function App() {
 				/>
 			)}
 
-			
+
 			<MusicPanel
 				musicPlayer={musicPlayer}
 				isOpen={openPanel === 'music'}
