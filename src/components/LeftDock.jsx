@@ -1,7 +1,9 @@
+import { Rain, Music, Image } from 'griddy-icons'
+
 const ITEMS = [
-    { id: 'noise', icon: '🌧', label: 'White Noise' },
-    { id: 'music', icon: '🎵', label: 'Music' },
-    { id: 'bg', icon: '🖼', label: 'Background' },
+    { id: 'noise', icon: <Rain size={28}  />, label: 'White Noise' },
+    { id: 'music', icon: <Music size={28}  />, label: 'Music' },
+    { id: 'bg', icon: <Image size={28}  />, label: 'Background' },
 ]
 
 export default function LeftDock({ openPanel, onTogglePanel }) {

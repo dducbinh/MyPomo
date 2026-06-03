@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-// Custom hook: tách logic ra khỏi UI
+// Custom hook
 
 export function useTodos() {
     const [todos, setTodos] = useState(() => {

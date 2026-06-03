@@ -1,5 +1,8 @@
+import { ClipboardList } from 'griddy-icons'
+
 import { useState, useEffect, useRef } from 'react'
 import TodoList from './TodoList'
+import { ImageOff } from 'griddy-icons'
 
 const MODES = {
 	focus: { label: 'Focus', duration: 25 * 60 },
@@ -123,7 +126,7 @@ export default function PomodoroTimer() {
 					))}
 				</div>
 
-				{/* What are you working on — mở TodoPopup */}
+				{/* mở TodoPopup */}
 				<button
 					onClick={() => setShowTodo(true)}
 					className="flex items-center gap-2 text-white/70 text-sm
@@ -131,11 +134,11 @@ export default function PomodoroTimer() {
                      bg-white/10 backdrop-blur-sm border border-white/20
                      px-5 py-2.5 rounded-full hover:bg-white/20"
 				>
-					<span>📋</span>
+					<span><ClipboardList size={28} /></span>
 					<span>What are you working on?</span>
 				</button>
 
-				{/* Nút điều khiển — chỉ còn Reset + Start */}
+				{/* Reset + Start */}
 				<div className="flex items-center gap-4">
 					<button
 						onClick={handleReset}

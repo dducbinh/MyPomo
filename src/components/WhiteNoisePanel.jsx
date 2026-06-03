@@ -12,7 +12,7 @@ export default function WhiteNoisePanel({ audioManager, onClose }) {
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3
                       border-b border-white/10">
-                <span className="text-white font-semibold text-sm">🌧 White Noises</span>
+                <span className="text-white font-semibold text-sm">White Noises</span>
                 <div className="flex items-center gap-3">
                     <button
                         onClick={() => setNoiseEnabled(e => !e)}
@@ -54,8 +54,7 @@ export default function WhiteNoisePanel({ audioManager, onClose }) {
                                 </span>
                             </button>
 
-                            {/* Slider chỉ hiện khi vol > 0
-                  Kéo về 0 → slider biến mất, phải click lại để bật */}
+                            {/* */}
                             {vol > 0 && (
                                 <input
                                     type="range" min="1" max="100" value={vol}

@@ -1,6 +1,8 @@
+import { UsersGroup, ChatBubble } from 'griddy-icons'
+
 const ITEMS = [
-    { id: 'rooms', icon: '👥', label: 'Rooms' },
-    { id: 'chat', icon: '💬', label: 'Chat' },
+    { id: 'rooms', icon: <UsersGroup size={28} />, label: 'Rooms' },
+    { id: 'chat', icon: <ChatBubble size={28} />, label: 'Chat' },
 ]
 
 export default function RightDock({ activePage, onNavigate }) {

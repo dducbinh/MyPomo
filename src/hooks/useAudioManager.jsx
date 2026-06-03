@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
+import { Cafe, Fire, Rain, WaterWaveBig, WindStrong } from 'griddy-icons'
 
 export const SOUNDS = [
-    { id: 'rain',   label: 'Rain',         icon: '🌧', url: 'https://www.soundjay.com/nature_c2026/sounds/rain-07.mp3' },
-    { id: 'wind',   label: 'Wind',         icon: '🌬', url: 'https://www.soundjay.com/nature_c2026/sounds/windy-forest-ambience-01.mp3' },
-    { id: 'wave',   label: 'Ocean Waves',  icon: '🌊', url: 'https://www.soundjay.com/nature_c2026/sounds/ocean-waves-1.mp3' },
-    { id: 'fire',   label: 'Fireplace',    icon: '🔥', url: 'https://www.soundjay.com/nature_c2026/sounds/campfire-1.mp3' },
-    { id: 'cafe',   label: 'Café',         icon: '☕', url: 'https://www.soundjay.com/ambient_c2026/sounds/people-in-lounge-1.mp3' },
+    { id: 'rain',   label: 'Rain',         icon: <Rain size={32}/>, url: 'https://www.soundjay.com/nature_c2026/sounds/rain-07.mp3' },
+    { id: 'wind',   label: 'Wind',         icon: <WindStrong size={32}/>, url: 'https://www.soundjay.com/nature_c2026/sounds/windy-forest-ambience-01.mp3' },
+    { id: 'wave',   label: 'Ocean Waves',  icon: <WaterWaveBig size={32}/>, url: 'https://www.soundjay.com/nature_c2026/sounds/ocean-waves-1.mp3' },
+    { id: 'fire',   label: 'Fireplace',    icon: <Fire size={32}/>, url: 'https://www.soundjay.com/nature_c2026/sounds/campfire-1.mp3' },
+    { id: 'cafe',   label: 'Café',         icon: <Cafe size={32}/>, url: 'https://www.soundjay.com/ambient_c2026/sounds/people-in-lounge-1.mp3' },
 ]
 
 export function useAudioManager() {
@@ -15,7 +16,7 @@ export function useAudioManager() {
     // { id: HTMLAudioElement }
     const audioRefs = useRef({})
 
-    // Khởi tạo Audio objects một lần
+    // Khởi tạo Audio objects
     useEffect(() => {
         SOUNDS.forEach(s => {
             if (!audioRefs.current[s.id]) {
@@ -35,7 +36,7 @@ export function useAudioManager() {
         }
     }, [])
 
-    // Sync play/pause + volume mỗi khi volumes hoặc noiseEnabled thay đổi
+    // Sync play/pause + volume
     useEffect(() => {
         SOUNDS.forEach(({ id }) => {
             const audio = audioRefs.current[id]
@@ -46,7 +47,7 @@ export function useAudioManager() {
 
             if (shouldPlay) {
                 audio.volume = vol / 100
-                // play() trả về Promise — bắt lỗi nếu browser chặn autoplay
+                // play() trả về Promise
                 audio.play().catch(() => {})
             } else {
                 audio.pause()
@@ -58,7 +59,7 @@ export function useAudioManager() {
         setVolumes(prev => ({ ...prev, [id]: Number(val) }))
     }
 
-    // Toggle: nếu đang có volume → tắt; nếu đang tắt → mở mặc định 60
+    // Toggle
     function toggleSound(id) {
         setVolumes(prev => ({
             ...prev,

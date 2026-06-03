@@ -18,7 +18,7 @@ export default function TodoList({ onClose }) {
 		if (e.target === overlayRef.current) onClose()
 	}
 
-	// Phím Escape để đóng
+	// Escape để đóng
 	useEffect(() => {
 		function handleKey(e) {
 			if (e.key === 'Escape') onClose()
@@ -43,7 +43,7 @@ export default function TodoList({ onClose }) {
 	const activeCount = todos.length - doneCount
 
 	return (
-		// Overlay tối phía sau
+		// Overlay
 		<div
 			ref={overlayRef}
 			onClick={handleOverlayClick}
